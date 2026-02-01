@@ -1,0 +1,185 @@
+.break-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #0f172a;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-blobs {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+.blob {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--accent-secondary);
+    border-radius: 50%;
+    animation: move 20s infinite alternate;
+}
+
+.blob:nth-child(2) {
+    background: var(--accent-primary);
+    left: 50%;
+    top: 20%;
+    animation-delay: -5s;
+}
+
+.blob:nth-child(3) {
+    background: #7c3aed;
+    right: 10%;
+    bottom: 10%;
+    animation-delay: -10s;
+}
+
+@keyframes move {
+    from {
+        transform: translate(-10%, -10%) scale(1);
+    }
+
+    to {
+        transform: translate(20%, 20%) scale(1.2);
+    }
+}
+
+.break-content {
+    padding: 3.5rem;
+    border-radius: 40px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.break-header h2 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 1rem 0 0.5rem;
+    color: white;
+}
+
+.break-header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.icon-container {
+    color: var(--accent-primary);
+    display: inline-flex;
+    padding: 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 20px;
+    animation: pulse 2s infinite;
+}
+
+.break-timer-wrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.break-progress-svg {
+    transform: rotate(-90deg);
+}
+
+.break-progress-svg circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.break-progress-svg circle.bg {
+    stroke: rgba(255, 255, 255, 0.05);
+}
+
+.break-progress-svg circle.progress {
+    stroke: var(--accent-secondary);
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 1s linear;
+}
+
+.counter-display {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.seconds {
+    display: block;
+    font-size: 4rem;
+    font-weight: 800;
+    color: white;
+    line-height: 1;
+}
+
+.label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.tips-carousel {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.tip-item {
+    font-size: 0.95rem;
+    color: white;
+    margin: 0.5rem 0;
+}
+
+.skip-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.skip-btn:hover {
+    opacity: 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

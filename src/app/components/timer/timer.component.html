@@ -1,0 +1,61 @@
+<div class="timer-card glass">
+    <div class="timer-header">
+        <div class="indicator" [class.active]="(state$ | async) === 'WORKING'">
+            <span class="pulse-dot"></span>
+            {{ (state$ | async) === 'IDLE' ? 'Ready' : 'In Progress' }}
+        </div>
+        <div class="session-count">
+            <span class="label">Breaks Completed</span>
+            <span class="count">{{ breakCount$ | async }}</span>
+        </div>
+    </div>
+
+    <div class="radial-container">
+        <div class="outer-glow"></div>
+        <svg viewBox="0 0 100 100" class="timer-svg">
+            <defs>
+                <linearGradient id="timerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--primary)" />
+                    <stop offset="100%" stop-color="var(--secondary)" />
+                </linearGradient>
+            </defs>
+            <circle class="track" cx="50" cy="50" r="46"></circle>
+            <circle class="value" cx="50" cy="50" r="46" [style.stroke-dashoffset]="getOffset(progress$ | async)"
+                stroke="url(#timerGradient)"></circle>
+        </svg>
+
+        <div class="timer-info">
+            <h2 class="time">{{ formatTime(timeLeft$ | async) }}</h2>
+            <p class="phase">{{ (state$ | async) === 'IDLE' ? 'Standard 20m cycle' : 'Relaxing your eyes' }}</p>
+        </div>
+    </div>
+
+    <div class="timer-actions">
+        <button class="btn-primary" (click)="handleToggle()">
+            <svg *ngIf="(state$ | async) === 'IDLE'" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            <svg *ngIf="(state$ | async) === 'WORKING'" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <rect width="4" height="16" x="6" y="4" rx="1" />
+                <rect width="4" height="16" x="14" y="4" rx="1" />
+            </svg>
+            {{ (state$ | async) === 'IDLE' ? 'Start Focus Session' : 'Pause Session' }}
+        </button>
+        <button class="btn-secondary" (click)="timerService.reset()">
+            Reset
+        </button>
+    </div>
+
+    <div class="permission-notice" *ngIf="notificationHidden">
+        <button class="link-btn" (click)="requestPermission()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+            </svg>
+            Enable Notifications
+        </button>
+    </div>
+</div>

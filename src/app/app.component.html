@@ -1,0 +1,94 @@
+<div class="app-layout">
+  <aside class="sidebar glass">
+    <div class="brand">
+      <div class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path
+            d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 20.276 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-20.276 0" />
+          <circle cx="12" cy="12" r="3" />
+        </svg>
+      </div>
+      <span>EyeCare AI</span>
+    </div>
+
+    <nav class="side-nav">
+      <a href="#" class="nav-item active">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <rect width="7" height="9" x="3" y="3" rx="1" />
+          <rect width="7" height="5" x="14" y="3" rx="1" />
+          <rect width="7" height="9" x="14" y="12" rx="1" />
+          <rect width="7" height="5" x="3" y="16" rx="1" />
+        </svg>
+        Dashboard
+      </a>
+      <a href="https://www.aoa.org/AOA/Images/Patients/Eye%20Conditions/20-20-20-rule.pdf" target="_blank"
+        class="nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2">
+          <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z" />
+          <path d="M8 7h6" />
+          <path d="M8 11h8" />
+        </svg>
+        Resources
+      </a>
+    </nav>
+
+    <div class="sidebar-wellness glass">
+      <p class="wellness-label">Focus Score</p>
+      <div class="score-bar">
+        <div class="score-fill" style="width: 85%"></div>
+      </div>
+      <p class="wellness-desc">You're doing great!</p>
+    </div>
+  </aside>
+
+  <main class="content-area">
+    <header class="top-bar">
+      <div class="welcome">
+        <h1>Daily Wellness</h1>
+        <p>Maintain your vision with proactive breaks.</p>
+      </div>
+      <div class="user-meta">
+        <div class="badge-status">
+          <span class="status-dot"></span> Protected
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-grid">
+      <div class="main-timer-section">
+        <app-timer></app-timer>
+      </div>
+
+      <div class="side-stats-panel">
+        <div class="health-card glass highlight">
+          <div class="card-icon">💡</div>
+          <div class="card-body">
+            <h3>Pro Tip</h3>
+            <p>Every 20 minutes, look at something 20 feet away for 20 seconds.</p>
+          </div>
+        </div>
+
+        <div class="health-card glass">
+          <div class="card-icon">👁️</div>
+          <div class="card-body">
+            <h3>Eye Health</h3>
+            <p>Frequent blinking keeps your eyes moist and reduces irritation.</p>
+          </div>
+        </div>
+
+        <div class="health-card glass">
+          <div class="card-icon">⚡</div>
+          <div class="card-body">
+            <h3>Focus Boost</h3>
+            <p>Micro-breaks improve long-term productivity and focus.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<app-break-screen *ngIf="(state$ | async) === 'BREAKING'"></app-break-screen>
