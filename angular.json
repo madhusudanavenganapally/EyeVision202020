@@ -38,6 +38,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "baseHref": "/EyeVision202020/",
             "outputPath": "dist/eye2020",
             "index": "src/index.html",
             "browser": "src/main.ts",
